@@ -1,0 +1,36 @@
+{
+  "name": "trainning-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev:watch": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngoclam98y/trainning-express.git"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "consign": "^0.1.2",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^4.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngoclam98y/trainning-express/issues"
+  },
+  "homepage": "https://github.com/ngoclam98y/trainning-express#readme"
+}
