@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const { HTTP_STATUS, customMail } = require('../Constants');
+const { HTTP_STATUS } = require('../Constants');
 const userRepository = require('../repositories/userRepository');
 const { checkInfoUser } = require("../untils/checkInfoUser");
 const { generatorJwt } = require("../untils/generatorJwt");
@@ -155,9 +155,10 @@ class userController {
             const mailOptions = {
                 to: email,
                 subject: "Password change request",
-                text: `Hi ${email} \n 
-                        Please click on the following link ${link} to reset your password. \n\n 
-                        If you did not request this, please ignore this email and your password will remain unchanged.\n`,
+                html: ` <p>Hi <b>${email}</b> </p> 
+                        <p>Please click on the following <a href=${link}>link</a> to reset your password</p>
+                        <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+                `,
             }
 
             try {
@@ -199,19 +200,21 @@ class userController {
         try {
             const { password } = req.body;
             const { tokenParams } = req.params;
-            const user = await userRepository.resetPassword(tokenParams, userRepository.hashPassword(password));
-            if (!user) {
+            const isSuccess = await userRepository.resetPassword(tokenParams, userRepository.hashPassword(password));
+            if (!isSuccess) {
                 return res.status(HTTP_STATUS.STATUS_OK).json({
                     success: false,
-                    message: "user is not exits!"
+                    message: "update password is not success!"
                 })
             }
 
             const mailOptions = {
                 to: user.email,
                 subject: "Your password has been changed",
-                text: `Hi ${user.email} \n 
-                This is a confirmation that the password for your account ${user.email} has just been changed.\n`
+                html: `
+                <p>Hi <b>${user.email}</b></p> 
+                <p>This is a confirmation that the password for your account ${user.email} has just been changed.</p>
+                `
             }
 
             try {

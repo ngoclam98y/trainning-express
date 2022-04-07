@@ -13,13 +13,13 @@ const transporter = nodemailer.createTransport({
 });
 
 
-module.exports.sendMail = function ({ to, subject, text }) {
+module.exports.sendMail = function ({ to, subject, html }) {
 
     const mailOptions = {
         to,
         from: process.env.FROM_EMAIL,
         subject,
-        text
+        html
     };
 
     return new Promise((res, rej) => {

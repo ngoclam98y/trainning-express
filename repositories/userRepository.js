@@ -65,7 +65,7 @@ class UserRepository {
             resetPasswordExpires: null
         }
         const user = await User.findOneAndUpdate({ resetPasswordToken: tokenParams, resetPasswordExpires: { $gt: Date.now() } }, { $set: updates }, { new: true });
-        return user;
+        return !!user;
     }
 
 }
