@@ -20,9 +20,18 @@ class UserRepository {
         return User.find().exec();
     }
 
+    deleteUser(id) {
+        return User.findByIdAndDelete(id).exec();
+    }
+
+    async updateUser(user) {
+        const userUpdate = await User.findOneAndUpdate({ email }, { $set: user }, { new: true });
+        return !!userUpdate;
+    }
+
     async saveUser(user) {
         await new User(user).save();
-        return user;
+        return !!user;
     }
 
     async getUserByEmail(email) {

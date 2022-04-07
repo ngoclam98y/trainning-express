@@ -27,6 +27,14 @@ const userSchema = new Schema({
         },
         required: [true, 'Password is required']
     },
+    githubId: {
+        type: String,
+        require: false,
+    },
+    googleId: {
+        type: String,
+        require: false,
+    },
     inActive: {
         type: Boolean,
         default: false

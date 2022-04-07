@@ -17,12 +17,3 @@ module.exports.TOKEN_LIFE = {
     REFRESH_TOKEN: 60 * 60 * 30
 }
 
-
-module.exports.customMail = function ({ to, subject, text }) {
-    return {
-        to,
-        from: process.env.FROM_EMAIL,
-        subject,
-        text
-    }
-}

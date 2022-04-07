@@ -1,11 +1,18 @@
 const express = require('express');
+const passport = require('passport');
 const app = express();
 
 const consign = require('consign');
 const bodyParser = require('body-parser');
-
+const { passportConfig } = require('./passport');
 
 app.use(bodyParser.json());
+
+
+passportConfig();
+
+app.use(passport.initialize())
+// app.use(passport.session())
 
 consign().include('./routes')
     .into(app);
