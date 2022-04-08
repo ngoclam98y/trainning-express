@@ -13,17 +13,13 @@ try {
         dbConfig.db,
         { useMongoClient: true, },
         () => {
-
+            console.log("connect mongoose success");
         }
     );
 } catch (error) {
+    console.log("connect mongoose faild");
 }
 
-
-const db = mongoose.connection;
-db.on('error', function () {
-    throw new Error('unable to connect to database at ' + config.db);
-});
 
 app.listen(port, function () {
     console.log('server start');

@@ -1,15 +1,29 @@
 version: "3.1"
 services:
-  api-services:
+  node_trainning:
     restart: always
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+      - CREATE_TOKEN=${CREATE_TOKEN}
+      - REFRESH_TOKEN=${REFRESH_TOKEN}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USER=${MAIL_USER}
+      - MAIL_PASS=${MAIL_PASS}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     ports:
-      - 4000:3000
-  mongo_db:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    command: npm start
+  mongodb_trainning:
     image: mongo
     restart: always
     ports:
-      - '37017:27017'
-
+      - '27017:27017'
